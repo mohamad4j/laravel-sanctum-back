@@ -7,8 +7,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+Route::group(['middleware' => 'auth:sanctum'], function() {
 Route::get('/test', function () {
     return json_encode('test');
+});
+    Route::post('/test', function () {
+        return json_encode('post test');
+    });
 });
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login']);
